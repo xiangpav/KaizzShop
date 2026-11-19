@@ -12,7 +12,7 @@ window.KAIZZ_CONFIG = {
   shopName: 'KaizzShop',
 
   telegramHandle: 'Kaizz',
-  telegramUrl: 'https://t.me/Kaizz',
+  telegramUrl: 'https://t.me/Isme_kaizz',
 
   supportHours: '8:00 – 23:00 (GMT+7), daily',
   supportPhone: '',
