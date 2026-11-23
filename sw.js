@@ -1,5 +1,5 @@
 /* KaizzShop service worker — app shell cache */
-const CACHE = 'kaizz-v4';
+const CACHE = 'kaizz-v5';
 const SHELL = [
   './',
   './index.html',

@@ -4,14 +4,14 @@
    1. Replace merchant.bakongId with YOUR Bakong account ID
       (the name shown in your banking app, e.g. sophea@abaa).
    2. Set merchant.placeholder to false.
-   3. Update the Telegram handle if it differs from @https://t.me/Isme_kaizz.
+   3. Update the Telegram handle and link below.
    Every dynamic KHQR is generated from these values.
    ============================================================ */
 
 window.KAIZZ_CONFIG = {
   shopName: 'KaizzShop',
 
-  telegramHandle: 'https://t.me/Isme_kaizz',
+  telegramHandle: 'Kaizz',
   telegramUrl: 'https://t.me/Isme_kaizz',
 
   supportHours: '8:00 – 23:00 (GMT+7), daily',
