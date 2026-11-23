@@ -1,7 +1,5 @@
-/* Hide poster sharing and download UI. */
-.poster-section,
-.price-foot .btn,
-.price-foot a.btn,
-.price-foot [href*="kaizz-poster"] {
+/* Hide poster download links only; retain the poster preview and live-prices link. */
+.poster-actions a[download],
+.price-foot a[download] {
   display: none !important;
 }
