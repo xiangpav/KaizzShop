@@ -4,7 +4,7 @@
    1. Replace merchant.bakongId with YOUR Bakong account ID
       (the name shown in your banking app, e.g. sophea@abaa).
    2. Set merchant.placeholder to false.
-   3. Update the Telegram handle if it differs from @Kaizz.
+   3. Update the Telegram handle if it differs from @https://t.me/Isme_kaizz.
    Every dynamic KHQR is generated from these values.
    ============================================================ */
 
