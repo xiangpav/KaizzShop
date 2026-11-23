@@ -1,5 +1,5 @@
 /* KaizzShop service worker — app shell cache */
-const CACHE = 'kaizz-v5';
+const CACHE = 'kaizz-v6';
 const SHELL = [
   './',
   './index.html',
@@ -9,7 +9,6 @@ const SHELL = [
   './assets/js/app.js',
   './assets/vendor/qrcode.min.js',
   './assets/img/kaizz-brand.jpg',
-  './assets/img/kaizz-poster.jpg',
   './assets/img/aba-qr.jpg',
   './assets/img/favicon.svg',
   './assets/img/icon-192.png',
@@ -32,6 +31,20 @@ self.addEventListener('activate', (event) => {
   );
 });
 
+function removePosterFeatures(response) {
+  if (!response || !response.headers.get('content-type')?.includes('text/html')) return response;
+
+  return response.text().then((html) => {
+    html = html.replace(/\s*<a class="btn btn-ghost btn-sm" href="assets\/img\/kaizz-poster\.jpg" download="KaizzShop-Price-List\.jpg">[\s\S]*?<\/a>/, '');
+    html = html.replace(/\s*<section class="section poster-section">[\s\S]*?<\/section>/, '');
+    return new Response(html, {
+      status: response.status,
+      statusText: response.statusText,
+      headers: response.headers
+    });
+  });
+}
+
 self.addEventListener('fetch', (event) => {
   const request = event.request;
   if (request.method !== 'GET') return;
@@ -39,7 +52,9 @@ self.addEventListener('fetch', (event) => {
 
   if (request.mode === 'navigate') {
     event.respondWith(
-      fetch(request).catch(() => caches.match('./index.html'))
+      fetch(request)
+        .catch(() => caches.match('./index.html'))
+        .then(removePosterFeatures)
     );
     return;
   }
