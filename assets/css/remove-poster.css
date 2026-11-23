@@ -1,0 +1,7 @@
+/* Hide poster sharing and download UI. */
+.poster-section,
+.price-foot .btn,
+.price-foot a.btn,
+.price-foot [href*="kaizz-poster"] {
+  display: none !important;
+}
