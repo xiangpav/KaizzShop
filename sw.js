@@ -1,5 +1,5 @@
 /* KaizzShop service worker — app shell cache */
-const CACHE = 'kaizz-v6';
+const CACHE = 'kaizz-v7';
 const SHELL = [
   './',
   './index.html',
@@ -31,12 +31,12 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-function removePosterFeatures(response) {
+function removePosterDownload(response) {
   if (!response || !response.headers.get('content-type')?.includes('text/html')) return response;
 
   return response.text().then((html) => {
-    html = html.replace(/\s*<a class="btn btn-ghost btn-sm" href="assets\/img\/kaizz-poster\.jpg" download="KaizzShop-Price-List\.jpg">[\s\S]*?<\/a>/, '');
-    html = html.replace(/\s*<section class="section poster-section">[\s\S]*?<\/section>/, '');
+    // Remove poster download links, but keep the poster preview and live-prices link.
+    html = html.replace(/\s*<a\b[^>]*\bdownload="KaizzShop-Price-List\.jpg"[^>]*>[\s\S]*?<\/a>/gi, '');
     return new Response(html, {
       status: response.status,
       statusText: response.statusText,
@@ -54,7 +54,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       fetch(request)
         .catch(() => caches.match('./index.html'))
-        .then(removePosterFeatures)
+        .then(removePosterDownload)
     );
     return;
   }
